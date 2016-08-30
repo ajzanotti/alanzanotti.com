@@ -2,6 +2,26 @@
       /* Custom Rules */
 /***************************/
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
+#main {
+  margin-bottom: 150px;
+}
+
+.wrapper-footer {
+  position: absolute;
+  bottom: 0;
+  height: 78px;
+  width: 100%;
+}
+
 .post-title {
   margin-bottom: 0px;
 }
