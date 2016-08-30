@@ -1,0 +1,30 @@
+/****************************/
+      /* Custom Rules */
+/***************************/
+
+.post-title {
+  margin-bottom: 0px;
+}
+
+.post-meta {
+  display: inline;
+  color: $gray;
+  font-size: 16px;
+}
+
+.post .byline {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: $darkGray;
+
+  a {
+    color: darken($mono-color,20);
+    &:hover{
+      color: $mono-color;
+    }
+  }
+}
+
+time::before {
+  content: "\0020\007C\0020";
+}
