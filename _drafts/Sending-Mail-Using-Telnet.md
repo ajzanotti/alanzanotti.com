@@ -16,10 +16,10 @@ send mail over SMTP using telnet.
 ## A Simple Message
 
 Before you can send an email to your best friend John, we need to know where the
-message is going to be sent. Assuming that John's email is jdoe@example.com, we can
-do that by looking up the mail exchanger (MX) records for the domain part of his email
-address. The MX record is a type of DNS resource record that maps a domain name
-to a list of message transfer agents (MTAs) __CITATION__.
+message is going to be sent. Assuming that John's email address is jdoe@example.com,
+we can do that by looking up the mail exchanger (MX) records for the domain part
+of his email address. The MX record is a type of DNS resource record that maps a
+domain name to a list of message transfer agents (MTAs) __CITATION__.
 
 Dig is an excellent tool for querying DNS. The following command will query DNS
 for any MX records associated with the example.com domain:
@@ -113,13 +113,13 @@ to facilitate the learning process, these three pieces are actually all part of
 sending one message in one telnet session.
 
 
-## A More Complex Example
+## A More Complex Message
 
-The example from the previous section is as simple as it gets, and it's boring too.
-In most cases, modern mail clients are capable of handling more types of content
-and presentation styles than clients in the 80s when SMTP was first introduced. There
-are still mail clients that support plain text only and how certain clients display
-a message can be subject to configuration and policy.
+The example from the previous section is as simple as it gets. In most cases, modern
+mail clients are capable of handling more types of content and presentation styles
+than clients in the 80s when SMTP was first introduced. There are still mail clients
+that support plain text only, and how certain clients display a message can be subject
+to configuration and policy.
 
 Fortunately, some very smart people have addressed these problems for us with Multipurpose
 Internet Mail Extensions (MIME) __CITATION__. MIME offers us a variety of different
@@ -127,7 +127,7 @@ content types to send such as text, images, and audio. It even allows us to send
 alternative versions of a message and permits mail clients to choose which of those
 versions to present to a user.
 
-Suppose you wanted to email John a link to a funny cat video you found youtube.
+Suppose you wanted to email John a link to a funny cat video you found YouTube.
 You could do it in exactly the same way as in the previous section or you could be
 a little fancy.
 
@@ -167,27 +167,33 @@ Content-Type: text/html; charset=US-ASCII
 {% endhighlight %}
 
 The first thing to note is that you've added two new mail headers. MIME-Version is
-always set to 1.0; simple enough. Content-Type varies and in this case states that
-there will be alternative versions of the same message and that those alternatives will
-be separated by the text "simpleboundary".
+always set to 1.0 __CITATION__. Content-Type varies and in this case states that there will be
+alternative versions of the same message and that those alternatives will be separated
+by the text "simpleboundary" __CITATION__.
 
 Each alternative will begin with the boundary text prepended with two dashes (&#8208;&#8208;simpleboundary),
-followed by a header section for that alternative, and then the message body. The final
-alternative will be followed by &#8208;&#8208;simpleboundary&#8208;&#8208; to terminate the list of alternatives.
-When using the multipart/alternative content type, always list your alternatives in
-order of increasing "richness". So, your most basic option is always first and your
-fanciest option is last. Clients will display the richest one that they support.
+followed by a header section for that alternative, and then the message body __CITATION__. The final
+alternative will be followed by &#8208;&#8208;simpleboundary&#8208;&#8208; to terminate the list of alternatives __CITATION__.
+When using the multipart/alternative content type, you must always list your alternatives in
+order of increasing "richness" __CITATION__. So, your most basic option is always first and your
+fanciest option is last. Clients will display the richest one that they can support.
 
 This particular message gives two options: the plain text message like the first example (text/plain)
-and an richer HTML version with a hyperlink (text/html). Note that the message must
-still be terminated by a period on a line by itself.
+and a richer HTML version with a hyperlink (text/html). Note that the message must
+still be terminated by a period on a line by itself before it can be delivered via SMTP.
 
-## Even More Complex
+
+## A Slightly More Complex Message
+
+Building on top of what we've just learned with MIME and the multipart/alternative
+content type, you have the basic knowledge you need to spice up your emails to John
+with cute cat pictures by nesting alternatives together. Each instance of multipart/alternative
+will need its own unique boundary text and both will need to be terminated separately.
 
 {% highlight plaintext %}
 Date: Wed, 05 Oct 2016 20:25:09 -0400
-From: NoReply <noreply@alanzanotti.com>
-To: Alan Zanotti <az9281@yahoo.com>
+From: Your Name <yourAddress@domain.com>
+To: John Doe <jdoe@example.com>
 Subject: I want this cat!
 MIME-Version: 1.0
 Content-Type: multipart/alternative; boundary=outer
@@ -223,12 +229,45 @@ Content-Transfer-Encoding: base64
 Content-Disposition: inline; filename=cortana-the-cat.jpg
 Content-ID: <1234567890>
 
-[BASE64-ENCODED IMAGE DATA]
+/9j/4AAQSkZJRgABAgEASABIAAD/4RWJRXhpZgAASUkqAAgAAAAHABIBAwABAAAAAQAAABoBBQAB
+AAAAYgAAABsBBQABAAAAagAAACgBAwABAAAAAgAAADEBAgAlAAAAcgAAADIBAgAUAAAAlwAAAGmH
+...
 
 --inner--
 --outer--
 .
 {% endhighlight %}
 
+The example above introduces the image/jpeg content type and with it three new headers:
+Content-Transfer-Encoding, Content-Disposition, and Content-ID.
+
+Without extensions, SMTP restricts messages to 7bit US-ASCII characters. The Content-Transfer-Encoding
+header specifies the type of encoding transformation applied to the body and thus
+the decoding operation necessary to restore it to its original form __rfc 2045, page 15__.
+In this instance, the encoding is base64, meaning that the image was converted to
+7bit US-ASCII text for easy transmission. To base64 encode a file on the command line:
+
+{% highlight plaintext %}
+[azanotti@SMTPDemo ~]$ base64 someImage.jpg
+{% endhighlight %}
+
+The Content-Disposition header indicates the desired presentation semantics of a
+message component __rfc 2183, page 2__. A Content-Disposition of inline means that
+a component should be displayed automatically upon display of the message __rfc 2183, page 4__.
+Think of every time you read an email with an image directly in the body instead of
+as an attachment, which happens to be another Content-Disposition type.
+
+The Content-ID is a label for uniquely identifying a message bodypart __rfc 2045, page 26__.
+Though optional __rfc 2045, page 26__, by including it for the image you can then
+easily reference it by cid in the image tag of your text/html message bodypart __rfc 2392__.
+
 
 # Problems and Pitfalls
+
+* Many ISPs block port 25, so trying the above examples from your home computer might
+  not work.
+* Don't expect to be able to send mail directly to a Gmail address unless you're
+  sending from a server that has a good sending reputation.
+* The correct order for SMTP commands is always EHLO, MAIL, RCPT, and then DATA.
+  Any deviation from this will result in a "503 bad sequence of commands" response
+  from the server __CITATION__.
