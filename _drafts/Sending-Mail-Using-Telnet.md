@@ -80,7 +80,7 @@ RCPT TO: <jdoe@example.com>
 The DATA command signifies the start of the message __CITATION__. A message
 starts with a header section that is separated from the body content by an empty
 line __rfc 5322, page 7__. There are many headers available but you don't need anymore
-than what you currently have in use __rfc 5322, page 19__.
+than what is currently in use __rfc 5322, page 19__.
 
 To signal to the server that you're ready to send, the message must be terminated
 by sending a period on a line by itself __rfc 5321, page 36__. If the server accepts
@@ -90,7 +90,7 @@ email is on its way to John.
 {% highlight plaintext %}
 DATA
 354 End data with <CR><LF>.<CR><LF>
-Date: Tue, 04 Oct 2016 19:38:20 -0400
+Date: Wed, 12 Oct 2016 21:22:10 -0400
 From: Your Name <yourAddress@domain.com>
 To: John Doe <jdoe@example.com>
 Subject: Thought you should know...
@@ -117,22 +117,22 @@ sending one message in one telnet session.
 
 The example from the previous section is as simple as it gets. In most cases, modern
 mail clients are capable of handling more types of content and presentation styles
-than clients in the 80s when SMTP was first introduced. There are still mail clients
+than clients could in the 80s when SMTP was first introduced. There are still mail clients
 that support plain text only, and how certain clients display a message can be subject
 to configuration and policy.
 
-Fortunately, some very smart people have addressed these problems for us with Multipurpose
-Internet Mail Extensions (MIME) __CITATION__. MIME offers us a variety of different
-content types to send such as text, images, and audio. It even allows us to send
-alternative versions of a message and permits mail clients to choose which of those
-versions to present to a user.
+Fortunately, some very smart people created Multipurpose Internet Mail Extensions (MIME)
+to allow for a variety of content and presentation styles in email __CITATION__.
+Included among the supported content types are HTML text, images, and audio.
+It even allows us to send alternative versions of a message and permits mail clients
+to choose which of those versions to present to a user.
 
 Suppose you wanted to email John a link to a funny cat video you found YouTube.
 You could do it in exactly the same way as in the previous section or you could be
 a little fancy.
 
 {% highlight plaintext %}
-Date: Tue, 04 Oct 2016 20:53:48 -0400
+Date: Wed, 12 Oct 2016 21:27:10 -0400
 From: Your Name <yourAddress@domain.com>
 To: John Doe <jdoe@example.com>
 Subject: Check out this cat video!
@@ -140,14 +140,14 @@ MIME-Version: 1.0
 Content-Type: multipart/alternative; boundary=simpleboundary
 
 --simpleboundary
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain
 
 You're going to love this cat!
 
 https://www.youtube.com/watch?v=dQw4w9WgXcQ
 
 --simpleboundary
-Content-Type: text/html; charset=US-ASCII
+Content-Type: text/html
 
 <!DOCTYPE html>
 <html>
@@ -166,10 +166,10 @@ Content-Type: text/html; charset=US-ASCII
 .
 {% endhighlight %}
 
-The first thing to note is that you've added two new mail headers. MIME-Version is
-always set to 1.0 __CITATION__. Content-Type varies and in this case states that there will be
-alternative versions of the same message and that those alternatives will be separated
-by the text "simpleboundary" __CITATION__.
+The first thing to note is that you've added two new mail headers. MIME-Version indicates
+that a message is MIME-formatted and is always set to 1.0 __rfc2045, page 9__. Content-Type
+varies and in this case states that there will be alternative versions of the same
+message and that those alternatives will be separated by the text "simpleboundary" __CITATION__.
 
 Each alternative will begin with the boundary text prepended with two dashes (&#8208;&#8208;simpleboundary),
 followed by a header section for that alternative, and then the message body __CITATION__. The final
@@ -183,7 +183,7 @@ and a richer HTML version with a hyperlink (text/html). Note that the message mu
 still be terminated by a period on a line by itself before it can be delivered via SMTP.
 
 
-## A Slightly More Complex Message
+## Even More Complex Message
 
 Building on top of what we've just learned with MIME and the multipart/alternative
 content type, you have the basic knowledge you need to spice up your emails to John
@@ -191,7 +191,7 @@ with cute cat pictures by nesting alternatives together. Each instance of multip
 will need its own unique boundary text and both will need to be terminated separately.
 
 {% highlight plaintext %}
-Date: Wed, 05 Oct 2016 20:25:09 -0400
+Date: Wed, 12 Oct 2016 21:31:06 -0400
 From: Your Name <yourAddress@domain.com>
 To: John Doe <jdoe@example.com>
 Subject: I want this cat!
@@ -199,7 +199,7 @@ MIME-Version: 1.0
 Content-Type: multipart/alternative; boundary=outer
 
 --outer
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain
 
 I really want this cat. She's so cute!
 
@@ -209,7 +209,7 @@ I really want this cat. She's so cute!
 Content-Type: multipart/mixed; boundary=inner
 
 --inner
-Content-Type: text/html; charset=UTF-8
+Content-Type: text/html
 
 <!DOCTYPE html>
 <html>
@@ -241,11 +241,12 @@ AAAAYgAAABsBBQABAAAAagAAACgBAwABAAAAAgAAADEBAgAlAAAAcgAAADIBAgAUAAAAlwAAAGmH
 The example above introduces the image/jpeg content type and with it three new headers:
 Content-Transfer-Encoding, Content-Disposition, and Content-ID.
 
-Without extensions, SMTP restricts messages to 7bit US-ASCII characters. The Content-Transfer-Encoding
-header specifies the type of encoding transformation applied to the body and thus
-the decoding operation necessary to restore it to its original form __rfc 2045, page 15__.
-In this instance, the encoding is base64, meaning that the image was converted to
-7bit US-ASCII text for easy transmission. To base64 encode a file on the command line:
+The Content-Transfer-Encoding header specifies the type of encoding transformation
+applied to the body and thus the decoding operation necessary to restore it to its
+original form __rfc 2045, page 15__. Without extensions, SMTP restricts messages
+to 7bit US-ASCII characters. In this instance, the encoding is base64, meaning that
+the image was converted to 7bit US-ASCII text for easy transmission. To base64 encode
+a file on the command line:
 
 {% highlight plaintext %}
 [azanotti@SMTPDemo ~]$ base64 someImage.jpg
@@ -271,3 +272,10 @@ easily reference it by cid in the image tag of your text/html message bodypart _
 * The correct order for SMTP commands is always EHLO, MAIL, RCPT, and then DATA.
   Any deviation from this will result in a "503 bad sequence of commands" response
   from the server __CITATION__.
+* The date mail header expects a certain format and can be quickly generated from
+  the command line:
+
+{% highlight plaintext %}
+[azanotti@SMTPDemo ~]$ date -R
+Wed, 12 Oct 2016 20:36:53 -0400
+{% endhighlight %}
