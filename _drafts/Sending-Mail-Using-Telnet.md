@@ -279,3 +279,14 @@ tag of your text/html message bodypart.
 [azanotti@SMTPDemo ~]$ date -R
 Wed, 12 Oct 2016 20:36:53 -0400
 {% endhighlight %}
+
+
+# Related Documents
+
+* Simple Mail Transfer Protocol ([RFC 5321](https://tools.ietf.org/html/rfc5321))
+* Internet Message Format ([RFC 5322](https://tools.ietf.org/html/rfc5322))
+* MIME Part One: Format of Internet Message Bodies ([RFC 2045](https://tools.ietf.org/html/rfc2045))
+* MIME Part Two: Media Types ([RFC 2046](https://tools.ietf.org/html/rfc2046))
+* MIME Part Five: Conformance Criteria and Examples ([RFC 2049](https://tools.ietf.org/html/rfc2049))
+* The Content-Disposition Header Field ([RFC 2183](https://tools.ietf.org/html/rfc2183))
+* Content-ID and Message-ID Uniform Resource Locators ([RFC 2392](https://tools.ietf.org/html/rfc2392))
