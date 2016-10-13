@@ -2,7 +2,7 @@
 layout: post
 title: Sending Mail Using Telnet
 author: Alan Zanotti
-date: 2016-10-03 23:09:07 -0400
+date: 2016-10-12 22:11:09 -0400
 excerpt: <p>Simple Mail Transfer Protocol (SMTP) is the official Internet standard for the transmission of email. SMTP is one of the major underpinnings of the Internet that we take for granted and that has enabled email to become a part of daily life. This post is going to remove the convenience of modern mail clients that you're used to and show you how to manually send mail over SMTP using telnet.</p>
 ---
 
