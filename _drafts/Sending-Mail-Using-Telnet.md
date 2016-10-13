@@ -78,7 +78,7 @@ RCPT TO: <jdoe@example.com>
 
 The DATA command signifies the start of the message. A message starts with a header
 section that is separated from the body content by an empty line. There are many
-headers available but you don't need anymore than what is currently in use.
+headers available but you don't need any more than what is currently in use.
 
 To signal to the server that you're ready to send, the message must be terminated
 by sending a period on a line by itself. If the server accepts responsibility for
@@ -258,9 +258,9 @@ be displayed automatically upon display of the message. Think of every time you
 read an email with an image directly in the body instead of as an attachment, which
 happens to be another Content-Disposition type.
 
-The Content-ID is a label for uniquely identifying a message bodypart. Though optional,
+The Content-ID is a label for uniquely identifying a message body part. Though optional,
 by including it for the image you can then easily reference it by cid in the image
-tag of your text/html message bodypart.
+tag of your text/html message body part.
 
 
 # Problems and Pitfalls
