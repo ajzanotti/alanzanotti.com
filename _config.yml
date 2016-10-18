@@ -3,10 +3,10 @@
 #
 
 # Name of your site (displayed in the header)
-name: Your Username
+name: Alan Zanotti
 
 # Short bio or description (displayed in the header)
-description: Programmer From Somewhere On Earth
+description: Linux administrator and developer
 
 
 #
@@ -16,30 +16,26 @@ description: Programmer From Somewhere On Earth
 # Includes an icon in the footer for each username you enter
 footer-links:
   dribbble:
-  email: agarwal.akshay.akshay8@gmail.com
+  email:
   facebook:
   flickr:
-  github: AkshayAgarwal007
+  github: ajzanotti
   instagram:
-  linkedin: akshay-agarwal-782018a4
+  linkedin: alan-zanotti-a1256349
   pinterest:
   rss: # just type anything here for a working RSS icon
-  twitter: 
+  twitter: alan_zanotti
   stackoverflow: # your stackoverflow profile, e.g. "users/3807565/akshay"
   youtube: # channel/<your_long_string> or user/<user-name>
   googleplus: # anything in your profile username that comes after plus.google.com/
 
 
-# Enter your Disqus shortname (not your username) to enable commenting on posts
-# You can find your shortname on the Settings page of your Disqus account
-disqus:
-
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
-google_analytics:
+google_analytics: UA-68150479-1
 
 # Your website URL (e.g. http://akshayagarwal007.github.io)
 # Used for Sitemap.xml and your RSS feed
-url:
+url: "http://alanzanotti.com"
 
 # If you're hosting your site at a Project repository on GitHub pages
 # (http://yourusername.github.io/repository-name)
@@ -47,11 +43,16 @@ url:
 # then add in the baseurl here, like this: "/repository-name"
 baseurl: ""
 
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      permalink: /posts/:title/
 #
 # !! You don't need to change any of the configuration flags below !!
 #
-
-permalink: /:title/
 
 # Jekyll 3 now only supports Kramdown for Markdown
 kramdown:
@@ -65,7 +66,7 @@ kramdown:
 
 # Set the Sass partials directory, as we're using @imports
 sass:
-  style: :expanded # You might prefer to minify using :compressed
+  style: :compressed # You might prefer to minify using :compressed
 
 # Use the following plug-ins
 gems:

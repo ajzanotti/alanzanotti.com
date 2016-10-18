@@ -1,15 +1,24 @@
 ---
-layout: blog
+layout: default
 ---
 
 <article class="post">
- <div class="space-extra-small">
- </div>
+  <header>
+    <h1 class="post-title">{{page.title}}</h1>
+
+    <p class="post-meta">By
+      <span class="byline">
+        <a href="https://www.linkedin.com/in/{{ site.footer-links.linkedin }}" rel="author" target="_top">{{ site.name }}</a>
+      </span>
+    </p>
+    <p class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%m/%d/%y %l:%M %p" }} EDT</time>
+    </p>
+  </header>
+  <div class="space-extra-small">
+  </div>
 
   <div class="entry">
     {{ content }}
   </div>
-
-  {% include disqus.html %}
 </article>
-

@@ -1,0 +1,63 @@
+/****************************/
+      /* Custom Rules */
+/***************************/
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
+#main {
+  margin-bottom: 150px;
+}
+
+.wrapper-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.copyright {
+  margin: 10px 0 0 0;
+  font-size: 12px;
+}
+
+.post-title {
+  margin-bottom: 0px;
+}
+
+.post-meta {
+  display: inline;
+  color: $gray;
+  font-size: 16px;
+}
+
+.post .byline {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: $darkGray;
+
+  a {
+    color: darken($mono-color,20);
+    &:hover{
+      color: $mono-color;
+    }
+  }
+}
+
+time::before {
+  content: "\0020\007C\0020";
+}
+
+.avatar-wrapper {
+  margin: auto;
+  width: 33%;
+
+  img {
+    border-radius: 50%;
+  }
+}
