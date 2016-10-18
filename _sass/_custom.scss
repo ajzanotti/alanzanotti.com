@@ -52,3 +52,12 @@ body {
 time::before {
   content: "\0020\007C\0020";
 }
+
+.avatar-wrapper {
+  margin: auto;
+  width: 33%;
+
+  img {
+    border-radius: 50%;
+  }
+}
