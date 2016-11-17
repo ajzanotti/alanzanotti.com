@@ -53,7 +53,7 @@ jekyll build --drafts
 
 For __PRODUCTION__:
 ```
-JEKYLL_ENV=production jekyll build
+JEKYLL_ENV="production" jekyll build
 ```
 
 The production build places the Google Analytics code into the footer.
