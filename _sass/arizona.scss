@@ -2,4 +2,8 @@
 
 
 // Import partials
-@import "arizona/syntax-highlighting";
+@import
+  "bootstrap-sprockets",
+  "bootstrap",
+  "arizona/syntax-highlighting"
+;
