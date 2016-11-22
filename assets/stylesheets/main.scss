@@ -4,7 +4,19 @@
 @charset "utf-8";
 
 // Our variables
+$text-color:              rgba(0, 0, 0, 0.6);
+$font-family-base:        Merriweather, serif;
 
+$font-size-base:          16px;
+$font-size-large:         ceil(($font-size-base * 1.25));  // ~20px
+$font-size-small:         ceil(($font-size-base * 0.85));  // ~14px
+
+$font-size-h1:            floor(($font-size-base * 2.00)); // ~32px
+$font-size-h2:            floor(($font-size-base * 1.75)); // ~28px
+$font-size-h3:            ceil(($font-size-base * 1.50));   // ~24px
+$font-size-h4:            ceil(($font-size-base * 1.25));  // ~20px
+$font-size-h5:            $font-size-base;
+$font-size-h6:            ceil(($font-size-base * 0.85));  // ~14px
 
 // Import partials
 @import "arizona";
