@@ -2,8 +2,8 @@
 layout: post
 title: Packer Templates v2.0.0 Released
 description: The v2.0.0 release of ajzanotti/packer-templates adds its first Ubuntu template and an amazon-import option for CentOS 7.
-keywords: Packer,templates,release,Ubuntu,CentOS,AWS,AMI
-date: 2017-01-05 19:35:12 -0500
+keywords: Packer,Vagrant,Ubuntu,CentOS,packer-templates,amazon-import
+date: 2017-01-06 19:27:53 -0500
 excerpt: The v2.0.0 release of ajzanotti/packer-templates has a lot to offer. In addition to a complete reorganization that better facilitates the use of the project, v2.0.0 adds the first Ubuntu template to the project, as well as an amazon-import option for CentOS 7.
 ---
 
