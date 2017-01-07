@@ -4,17 +4,17 @@ title: Packer Templates v2.0.0 Released
 description: The v2.0.0 release of ajzanotti/packer-templates adds its first Ubuntu template and an amazon-import option for CentOS 7.
 keywords: Packer,Vagrant,Ubuntu,CentOS,packer-templates,amazon-import
 date: 2017-01-06 19:27:53 -0500
-excerpt: The v2.0.0 release of ajzanotti/packer-templates has a lot to offer. In addition to a complete reorganization that better facilitates the use of the project, v2.0.0 adds the first Ubuntu template to the project, as well as an amazon-import option for CentOS 7.
+excerpt: The v2.0.0 release of ajzanotti/packer-templates has a lot to offer. In addition to a complete reorganization that better facilitates the use of the project, v2.0.0 adds the first Ubuntu template, as well as an amazon-import option for CentOS 7.
 ---
 
 The v2.0.0 release of [ajzanotti/packer-templates](https://github.com/ajzanotti/packer-templates)
 has a lot to offer. In addition to a complete reorganization that better facilitates
-the use of the project, v2.0.0 adds the first Ubuntu template to the project, as
-well as an amazon-import option for CentOS 7.
+the use of the project, v2.0.0 adds the first Ubuntu template, as well as an amazon-import
+option for CentOS 7.
 
 ## CentOS 7 Amazon Import
 
-The CentOS 7 templates have been split into three pieces. The first creates an OVA
+The CentOS 7 templates are comprised of three pieces. The first creates an OVA
 that can then be imported into the vagrant and amazon-import templates for further
 provisioning and post-processing.
 
@@ -38,7 +38,7 @@ time, but the end result is a custom image in AWS that's tailored to your needs.
 
 ## Ubuntu Xenial
 
-The command to build the Ubuntu Xenial Vagrant box is typical to other Vagrant box
+The command to build the Ubuntu Xenial Vagrant box is typical of other Vagrant box
 builds
 
 {% highlight plaintext %}
