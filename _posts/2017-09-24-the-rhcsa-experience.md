@@ -4,7 +4,7 @@ title: The RHCSA Experience
 description: Read about my recent RHCSA certification and the resources most beneficial to my success.
 keywords: RHCSA,certification,RHEL7
 date: 2017-09-24 18:02:35 -0400
-excerpt: On 15 September 2017, I earned my Red Hat Certified System Administrator (RHCSA) certification from Red Hat. Overall, I found the process to be rewarding and I wanted to briefly discuss how I went about preparing for the exam, to hopefully benefit anyone else interested in getting certified.
+excerpt: On 15 September 2017, I earned my Red Hat Certified System Administrator (RHCSA) certification from Red Hat. Overall, I found the process to be rewarding and I wanted to briefly discuss how I went about preparing for the exam, to hopefully benefit anyone else interested in becoming certified.
 ---
 
 On 15 September 2017, I earned my Red Hat Certified System Administrator (RHCSA)
@@ -19,7 +19,7 @@ Red Hat certified professionals, I had no frame of reference for what to expect
 in the exam. In hindsight, I definitely over-studied, but the exam costs $400 and
 I didn't want to spend that kind of money without doing everything I could to be
 prepared. The first step for anybody interested in taking the RHCSA exam, or any
-other exam for that matter, should be to review the exam [objectives](https://www.redhat.com/en/services/training/ex200-red-hat-certified-system-administrator-rhcsa-exam).
+other exam for that matter, should be to review the [exam objectives](https://www.redhat.com/en/services/training/ex200-red-hat-certified-system-administrator-rhcsa-exam).
 You should also get in the habit of periodically reviewing the exam objectives because
 Red Hat reserves the right to make changes as they see fit, although I didn't notice
 any changes between when I started preparing and when I took the exam.
@@ -37,7 +37,7 @@ I paid extra attention to preparing for those objectives.
 Obviously, Red Hat Enterprise Linux 7 would be the ideal operating system to study
 against, but I used CentOS 7 and never ran into any problems. Other distributions that
 use Yum for package management and support KVM virtualization may be fine. However,
-Fedora should be avoided because it's "bleeding edge" and may not be represent real
+Fedora should be avoided because it's "bleeding edge" and may not represent real
 systems. To confirm that your system supports virtualization, look for either the
 vmx (Intel) or svm (AMD) flag in the /proc/cpuinfo file. If neither flag is present,
 ensure that virtualization is enabled in your BIOS. You should have enough memory,
@@ -80,5 +80,5 @@ I can't provide any information about the exam itself, but some general advice w
 be to make sure you're registering for the time and place that you think you are.
 Also, it's always a good practice to arrive early. Finally, don't cause yourself
 any more stress than you need to. If you've studied the exam objectives and practiced
-the areas in which you're most deficient, you should do well.
+the areas in which you're deficient, you should do well.
 
